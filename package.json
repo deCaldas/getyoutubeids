@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "getYouTubeIds.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "generate-docs": "jsdoc -c jsdoc.json"
   },
   "repository": {
     "type": "git",
@@ -18,6 +18,12 @@
   "homepage": "https://github.com/decaldas/getyoutubeids#readme",
   "description": "",
   "devDependencies": {
-    "jsdoc": "^4.0.4"
+    "@types/puppeteer": "^5.4.7",
+    "jsdoc": "^4.0.4",
+    "minami": "^1.2.3"
+  },
+  "dependencies": {
+    "puppeteer-extra": "^3.3.6",
+    "puppeteer-extra-plugin-stealth": "^2.11.2"
   }
 }

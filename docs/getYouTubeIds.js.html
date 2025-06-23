@@ -1,4 +1,32 @@
-/**
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: getYouTubeIds.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: getYouTubeIds.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
  * @module YouTubeScraper
  * @description Módulo para buscar IDs de YouTube a partir de canciones usando Puppeteer Extra con modo stealth.
  * Lee canciones desde un archivo JSON y guarda los resultados con los IDs encontrados.
@@ -20,8 +48,8 @@ const path = require('path');
  * @property {number} requestDelay.max - Máximo delay entre requests
  * @property {number} timeout - Timeout para operaciones de Puppeteer (ms)
  * @property {number} maxParallelPages - Número máximo de páginas paralelas
- * @property {Array<string>} userAgents - Lista de user agents para rotar
- * @property {Array<string>} proxies - Lista de proxies (opcional)
+ * @property {Array&lt;string>} userAgents - Lista de user agents para rotar
+ * @property {Array&lt;string>} proxies - Lista de proxies (opcional)
  */
 
 /** @type {ScraperConfig} */
@@ -72,7 +100,7 @@ class YouTubeScraper {
   /**
    * Inicializa el navegador Puppeteer
    * @async
-   * @returns {Promise<void>}
+   * @returns {Promise&lt;void>}
    */
   async init() {
     this.browser = await puppeteer.launch({
@@ -92,7 +120,7 @@ class YouTubeScraper {
    * @param {Object} song - Canción a buscar
    * @param {string} song.title - Título de la canción
    * @param {string} song.artist - Artista de la canción
-   * @returns {Promise<?string>} ID del video de YouTube o null si no se encuentra
+   * @returns {Promise&lt;?string>} ID del video de YouTube o null si no se encuentra
    */
   async scrapeSong(page, song) {
     const searchQuery = `${song.title} ${song.artist} official`;
@@ -102,7 +130,7 @@ class YouTubeScraper {
         'Referer': 'https://www.google.com/'
       });
 
-      await page.goto(`https://www.youtube.com/results?search_query=${encodeURIComponent(searchQuery)}&sp=EgIQAQ%253D%253D`, {
+      await page.goto(`https://www.youtube.com/results?search_query=${encodeURIComponent(searchQuery)}&amp;sp=EgIQAQ%253D%253D`, {
         waitUntil: 'networkidle2',
         timeout: CONFIG.timeout
       });
@@ -114,13 +142,13 @@ class YouTubeScraper {
                           document.querySelector('ytd-rich-item-renderer a#video-title');
         
         if (firstResult?.href) {
-          const match = firstResult.href.match(/v=([^&]+)/);
+          const match = firstResult.href.match(/v=([^&amp;]+)/);
           if (match) return match[1];
         }
 
         const thumbLinks = document.querySelectorAll('ytd-thumbnail a');
         for (const link of thumbLinks) {
-          const match = link.href?.match(/v=([^&]+)/);
+          const match = link.href?.match(/v=([^&amp;]+)/);
           if (match) return match[1];
         }
 
@@ -137,8 +165,8 @@ class YouTubeScraper {
   /**
    * Procesa una lista de canciones para encontrar sus IDs en YouTube
    * @async
-   * @param {Array<Object>} songs - Lista de canciones a procesar
-   * @returns {Promise<void>}
+   * @param {Array&lt;Object>} songs - Lista de canciones a procesar
+   * @returns {Promise&lt;void>}
    */
   async processSongs(songs) {
     const pages = await Promise.all(
@@ -154,7 +182,7 @@ class YouTubeScraper {
       let retries = 0;
       let videoId = null;
 
-      while (retries < CONFIG.maxRetries && !videoId) {
+      while (retries &lt; CONFIG.maxRetries &amp;&amp; !videoId) {
         const page = pages[index % CONFIG.maxParallelPages];
         try {
           await page.setUserAgent(this.getRandomUserAgent());
@@ -195,8 +223,8 @@ class YouTubeScraper {
   /**
    * Guarda resultados parciales en un archivo temporal
    * @async
-   * @param {Array<Object>} data - Datos a guardar
-   * @returns {Promise<void>}
+   * @param {Array&lt;Object>} data - Datos a guardar
+   * @returns {Promise&lt;void>}
    */
   async savePartialResults(data) {
     const tempFile = `${CONFIG.outputFile}.tmp`;
@@ -206,8 +234,8 @@ class YouTubeScraper {
   /**
    * Guarda los resultados finales
    * @async
-   * @param {Array<Object>} data - Datos a guardar
-   * @returns {Promise<void>}
+   * @param {Array&lt;Object>} data - Datos a guardar
+   * @returns {Promise&lt;void>}
    */
   async saveResults(data) {
     await fs.writeFile(CONFIG.outputFile, JSON.stringify(data, null, 2));
@@ -224,7 +252,7 @@ class YouTubeScraper {
   /**
    * Espera un tiempo aleatorio entre requests
    * @async
-   * @returns {Promise<void>}
+   * @returns {Promise&lt;void>}
    */
   async randomDelay() {
     const delay = Math.random() * (CONFIG.requestDelay.max - CONFIG.requestDelay.min) + CONFIG.requestDelay.min;
@@ -234,7 +262,7 @@ class YouTubeScraper {
   /**
    * Cierra el navegador Puppeteer
    * @async
-   * @returns {Promise<void>}
+   * @returns {Promise&lt;void>}
    */
   async close() {
     if (this.browser) await this.browser.close();
@@ -244,7 +272,7 @@ class YouTubeScraper {
 /**
  * Función principal que ejecuta el scraping
  * @async
- * @returns {Promise<void>}
+ * @returns {Promise&lt;void>}
  */
 async function main() {
   const scraper = new YouTubeScraper();
@@ -271,4 +299,26 @@ async function main() {
   }
 }
 
-main();
+main();</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-YouTubeScraper.html">YouTubeScraper</a></li></ul><h3>Classes</h3><ul><li><a href="module-YouTubeScraper-YouTubeScraper.html">YouTubeScraper</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Mon Jun 23 2025 11:27:03 GMT-0500 (hora estándar de Colombia)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
