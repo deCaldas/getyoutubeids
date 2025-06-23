@@ -1,0 +1,23 @@
+{
+  "name": "getyoutubeids",
+  "version": "1.0.0",
+  "main": "getYouTubeIds.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/decaldas/getyoutubeids.git"
+  },
+  "keywords": [],
+  "author": "Diego Whiskey",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/decaldas/getyoutubeids/issues"
+  },
+  "homepage": "https://github.com/decaldas/getyoutubeids#readme",
+  "description": "",
+  "devDependencies": {
+    "jsdoc": "^4.0.4"
+  }
+}
