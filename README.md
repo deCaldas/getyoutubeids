@@ -1,4 +1,4 @@
-# YouTube ID Scraper
+# YouTube ID Scraper and JSDoc
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
