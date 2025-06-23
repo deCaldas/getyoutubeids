@@ -65,7 +65,6 @@ Edita las constantes al inicio del archivo para ajustar:
 
 `userAgents`: Lista de user agents para rotar
 
-Documentación
 Genera documentación con:
 ```bash
 npm run generate-docs
