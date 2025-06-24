@@ -54,7 +54,6 @@ node getYouTubeIds.js
 ```
 3. Los resultados se guardarán en `songs_with_ids.json`
 
-Configuración
 Edita las constantes al inicio del archivo para ajustar:
 
 `maxRetries`: Número de reintentos por canción
@@ -74,7 +73,6 @@ Limitaciones
 + Depende de la estructura actual de YouTube
 + Puede requerir ajustes si YouTube cambia su HTML
 
-Contribuciones
 Las contribuciones son bienvenidas. Por favor haga su issue primero para discutir los cambios.
 
 Licencia
