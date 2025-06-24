@@ -15,7 +15,7 @@ Un scraper para encontrar IDs de YouTube a partir de listas de canciones, usando
 ## Instalación
 
 ```bash
-npm install puppeteer-extra puppeteer-extra-plugin-stealth
+npm install
 ```
 
 Uso
