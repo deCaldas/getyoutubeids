@@ -1,12 +1,13 @@
 {
   "source": {
-    "include": ["."],
+    "include": ["getYouTubeIds.js"],
     "exclude": ["node_modules | docs"]
   },
   "opts": {
     "destination": "./docs/",
     "recurse": true,
-    "readme": "README.md"
+    "readme": "README.md",
+    "template": "node_modules/clean-jsdoc-theme"
   },
   "plugins": [],
   "templates": {

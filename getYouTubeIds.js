@@ -49,7 +49,7 @@ class YouTubeScraper {
   constructor() {
     /**
      * Instancia del navegador Puppeteer
-     * @type {puppeteer.Browser|null}
+     * @type {puppeteer.Browser}
      */
     this.browser = null;
     
