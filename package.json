@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "getYouTubeIds.js",
   "scripts": {
-    "generate-docs": "jsdoc -c jsdoc.json"
+    "generate-docs": "jsdoc -c jsdoc.json",
+    "deploy": "gh-pages -d docs"
   },
   "repository": {
     "type": "git",
@@ -19,6 +20,7 @@
   "description": "",
   "devDependencies": {
     "@types/puppeteer": "^5.4.7",
+    "gh-pages": "^6.3.0",
     "jsdoc": "^4.0.4",
     "minami": "^1.2.3"
   },
