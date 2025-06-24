@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "getYouTubeIds.js",
   "scripts": {
-    "generate-docs": "jsdoc -c jsdoc.json",
+    "docs": "jsdoc -c jsdoc.json",
     "deploy": "gh-pages -d docs"
   },
   "repository": {

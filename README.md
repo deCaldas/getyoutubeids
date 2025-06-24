@@ -67,7 +67,7 @@ Edita las constantes al inicio del archivo para ajustar:
 
 Genera documentación con:
 ```bash
-npm run generate-docs
+npm run docs
 ```
 
 Limitaciones
